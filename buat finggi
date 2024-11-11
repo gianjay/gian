@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pulihlah Cepat, Sayang</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: "Times New Roman", Times, serif;
+            background-color: #f0e5cf;
+            color: #333;
+        }
+
+        .container {
+            text-align: center;
+            background: #fff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+            display: none; /* Awalnya tersembunyi */
+            max-width: 600px; /* Batas lebar maksimal */
+            margin: 0 20px;
+        }
+
+        h1 {
+            font-size: 2em;
+            color: #ff5e5e;
+            opacity: 0;
+            animation: fadeInText 1s ease-in-out forwards;
+            animation-delay: 0.2s;
+        }
+        
+        p {
+            font-size: 1.2em;
+            color: #555;
+            white-space: pre-line;
+        }
+
+        /* Tombol play */
+        .play-button {
+            padding: 10px 20px;
+            background-color: #ff5e5e;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+
+        /* Animasi */
+        @keyframes fadeInText {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Tombol play -->
+    <button class="play-button" onclick="playAudio()">Putar Lagu</button>
+    
+    <div class="container" id="content">
+        <h1>Semoga Cepat Sembuh Sayangku ❤️</h1>
+        <p id="typingText"></p>
+        <audio id="audioPlayer">
+            <source src="Y2meta.app - @coldplay - Fix You (Lyrics) (128 kbps) (1).mp3" type="audio/mpeg">
+            Browser Anda tidak mendukung pemutar audio.
+        </audio>
+    </div>
+
+    <script>
+        function playAudio() {
+            const audio = document.getElementById('audioPlayer');
+            const content = document.getElementById('content');
+            const button = document.querySelector('.play-button');
+            
+            audio.play();
+            content.style.display = "block"; // Show the message container
+            setTimeout(() => content.style.opacity = "1", 10); // Start opacity transition
+            button.style.display = "none"; // Hide the play button after click
+            
+            // Start typing effect
+            typeText();
+        }
+
+        function typeText() {
+            const text = "Teruntuk finggi dwi pamuningtyas yang cantik jelita, Istirahat yang cukup ya bub, jangan lupa minum obat, jangan lupa makan yang penting! Aku pengen kamu cepet sembuh bub, jangan sedih teruss, aku nanti jadi ikutan sedih. Kalo cape nugas istirahat dulu jangan di paksain bub, love you bubuku.";
+            const typingTextElement = document.getElementById('typingText');
+            let index = 0;
+
+            function type() {
+                if (index < text.length) {
+                    typingTextElement.innerHTML += text.charAt(index);
+                    index++;
+                    setTimeout(type, 50); // Adjust speed here (lower number = faster typing)
+                }
+            }
+
+            type();
+        }
+    </script>
+</body>
+</html>
